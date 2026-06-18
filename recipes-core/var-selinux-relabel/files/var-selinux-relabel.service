@@ -1,0 +1,13 @@
+[Unit]
+Description=Relabel /var early
+DefaultDependencies=no
+
+After=var.mount
+Before=sysinit.target
+
+[Service]
+Type=oneshot
+ExecStart=-/sbin/restorecon -RF /var
+
+[Install]
+WantedBy=sysinit.target
